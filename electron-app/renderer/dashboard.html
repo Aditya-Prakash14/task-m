@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Todo Calendar</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📅 Todo Calendar</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="todos.html" class="nav-item">
+          <span class="nav-icon">✓</span>
+          <span>Todos</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Calendar</span>
+        </a>
+        <a href="categories.html" class="nav-item">
+          <span class="nav-icon">📁</span>
+          <span>Categories</span>
+        </a>
+        <a href="tags.html" class="nav-item">
+          <span class="nav-icon">🏷️</span>
+          <span>Tags</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info" id="user-info">
+          <div class="user-avatar">👤</div>
+          <div class="user-details">
+            <div class="user-name">Loading...</div>
+            <div class="user-email"></div>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="logout()" style="width: 100%; margin-top: 0.5rem;">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Dashboard</h1>
+        <div class="header-actions">
+          <button class="btn btn-primary" onclick="showNewTodoModal()">
+            + New Todo
+          </button>
+          <button class="btn btn-secondary" onclick="showNewEventModal()">
+            + New Event
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-grid">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #dbeafe;">📝</div>
+            <div class="stat-content">
+              <div class="stat-label">Total Todos</div>
+              <div class="stat-value" id="total-todos">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #fef3c7;">⏳</div>
+            <div class="stat-content">
+              <div class="stat-label">Pending</div>
+              <div class="stat-value" id="pending-todos">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #d1fae5;">✓</div>
+            <div class="stat-content">
+              <div class="stat-label">Completed</div>
+              <div class="stat-value" id="completed-todos">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #fee2e2;">⚠️</div>
+            <div class="stat-content">
+              <div class="stat-label">Overdue</div>
+              <div class="stat-value" id="overdue-todos">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #e0e7ff;">📅</div>
+            <div class="stat-content">
+              <div class="stat-label">Total Events</div>
+              <div class="stat-value" id="total-events">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #f3e8ff;">🔔</div>
+            <div class="stat-content">
+              <div class="stat-label">Upcoming Reminders</div>
+              <div class="stat-value" id="upcoming-reminders">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Priority Breakdown -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Todos by Priority</h3>
+          </div>
+          <div class="card-body">
+            <div class="priority-list" id="priority-breakdown">
+              <div class="priority-item">
+                <span class="badge priority-urgent">Urgent</span>
+                <span class="priority-count">0</span>
+              </div>
+              <div class="priority-item">
+                <span class="badge priority-high">High</span>
+                <span class="priority-count">0</span>
+              </div>
+              <div class="priority-item">
+                <span class="badge priority-medium">Medium</span>
+                <span class="priority-count">0</span>
+              </div>
+              <div class="priority-item">
+                <span class="badge priority-low">Low</span>
+                <span class="priority-count">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Todos -->
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3>Recent Todos</h3>
+            <a href="todos.html" class="btn btn-sm btn-outline">View All</a>
+          </div>
+          <div class="card-body">
+            <div id="recent-todos" class="todo-list">
+              <p style="text-align: center; color: var(--text-secondary);">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3>Upcoming Events</h3>
+            <a href="calendar.html" class="btn btn-sm btn-outline">View Calendar</a>
+          </div>
+          <div class="card-body">
+            <div id="upcoming-events" class="event-list">
+              <p style="text-align: center; color: var(--text-secondary);">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

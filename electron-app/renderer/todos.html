@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todos - Todo Calendar</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📅 Todo Calendar</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="todos.html" class="nav-item active">
+          <span class="nav-icon">✓</span>
+          <span>Todos</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Calendar</span>
+        </a>
+        <a href="categories.html" class="nav-item">
+          <span class="nav-icon">📁</span>
+          <span>Categories</span>
+        </a>
+        <a href="tags.html" class="nav-item">
+          <span class="nav-icon">🏷️</span>
+          <span>Tags</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info" id="user-info">
+          <div class="user-avatar">👤</div>
+          <div class="user-details">
+            <div class="user-name">Loading...</div>
+            <div class="user-email"></div>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="logout()" style="width: 100%; margin-top: 0.5rem;">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Todos</h1>
+        <button class="btn btn-primary" onclick="showTodoModal()">
+          + New Todo
+        </button>
+      </header>
+
+      <!-- Filters -->
+      <div style="background: white; padding: 1rem 2rem; border-bottom: 1px solid var(--border-color);">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <select id="filter-status" class="form-control" style="width: auto;">
+            <option value="">All Status</option>
+            <option value="PENDING">Pending</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+
+          <select id="filter-priority" class="form-control" style="width: auto;">
+            <option value="">All Priorities</option>
+            <option value="URGENT">Urgent</option>
+            <option value="HIGH">High</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="LOW">Low</option>
+          </select>
+
+          <input type="search" id="search-input" class="form-control" placeholder="Search todos..." style="flex: 1; min-width: 200px;">
+          
+          <button class="btn btn-outline" onclick="clearFilters()">Clear Filters</button>
+        </div>
+      </div>
+
+      <div style="padding: 2rem;">
+        <div id="todos-container" class="todo-list">
+          <p style="text-align: center; color: var(--text-secondary);">Loading...</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Todo Modal -->
+  <div id="todo-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">New Todo</h3>
+        <button class="modal-close" onclick="closeTodoModal()">×</button>
+      </div>
+      <form id="todo-form">
+        <div class="modal-body">
+          <input type="hidden" id="todo-id">
+          
+          <div class="form-group">
+            <label class="form-label">Title *</label>
+            <input type="text" id="todo-title" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="todo-description" class="form-control"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select id="todo-priority" class="form-control">
+              <option value="LOW">Low</option>
+              <option value="MEDIUM" selected>Medium</option>
+              <option value="HIGH">High</option>
+              <option value="URGENT">Urgent</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="todo-status" class="form-control">
+              <option value="PENDING" selected>Pending</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Due Date</label>
+            <input type="datetime-local" id="todo-due-date" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Estimated Time (minutes)</label>
+            <input type="number" id="todo-estimated-time" class="form-control" min="1">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeTodoModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Todo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/todos.js"></script>
+</body>
+</html>

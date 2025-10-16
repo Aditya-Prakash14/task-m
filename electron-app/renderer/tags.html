@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tags - Todo Calendar</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📅 Todo Calendar</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="todos.html" class="nav-item">
+          <span class="nav-icon">✓</span>
+          <span>Todos</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <span class="nav-icon">📅</span>
+          <span>Calendar</span>
+        </a>
+        <a href="categories.html" class="nav-item">
+          <span class="nav-icon">📁</span>
+          <span>Categories</span>
+        </a>
+        <a href="tags.html" class="nav-item active">
+          <span class="nav-icon">🏷️</span>
+          <span>Tags</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-info" id="user-info">
+          <div class="user-avatar">👤</div>
+          <div class="user-details">
+            <div class="user-name">Loading...</div>
+            <div class="user-email"></div>
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="api.logout()" style="width: 100%; margin-top: 0.5rem;">
+          Logout
+        </button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="content-header">
+        <h1>Tags</h1>
+        <button class="btn btn-primary" onclick="alert('Tag management coming soon!')">
+          + New Tag
+        </button>
+      </header>
+      <div style="padding: 2rem;">
+        <p style="text-align: center; color: var(--text-secondary);">
+          Tag management feature coming soon...
+        </p>
+      </div>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+</body>
+</html>
