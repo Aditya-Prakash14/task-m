@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: todo-calendar-backend
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npx prisma generate
+    startCommand: npx prisma migrate deploy && npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
